@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang - Els iPhone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="bg-light p-3">
+    <div class="container d-flex justify-content-between">
+        <div class="logo">
+            <h1 class="h4">Els iPhone</h1>
+        </div>
+        <nav>
+            <a href="index.html" class="mx-2">Beranda</a>
+            <a href="products.html" class="mx-2">Produk</a>
+            <a href="checkout.html" class="mx-2">Keranjang</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container my-4">
+    <h2 class="text-center">Keranjang Anda</h2>
+    
+    <div class="table-responsive">
+        <table class="table table-bordered text-center" id="cartTable">
+            <thead>
+                <tr>
+                    <th>Produk</th>
+                    <th>Nama Produk</th>
+                    <th>Harga</th>
+                    <th>Jumlah</th>
+                    <th>Total</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Produk akan ditambahkan di sini melalui JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Total Harga dan Checkout -->
+    <div class="d-flex justify-content-between my-4">
+        <h4 id="totalPrice">Total: 0 IDR</h4>
+        <button class="btn btn-success btn-lg" id="checkoutButton">Lanjutkan ke Pembayaran</button>
+    </div>
+</main>
+
+<footer class="footer text-center">
+    <p>© 2024 Els iPhone | Kontak: elsiphone@example.com | 0889- 8011- 1938</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Ambil item dari localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Mengisi tabel dengan produk yang ada di keranjang
+    const cartTableBody = document.querySelector('#cartTable tbody');
+    let totalPrice = 0;
+
+    cartItems.forEach(item => {
+        const row = document.createElement('tr');
+        const total = item.price * item.quantity;
+
+        // Tambah ke total harga
+        totalPrice += total;
+
+        row.innerHTML = `
+            <td><img src="${getImageUrl(item.name)}" alt="${item.name}" class="img-thumbnail" style="width: 100px;"></td>
+            <td>${item.name} (${item.tipe})</td>
+            <td>${item.price.toLocaleString()} IDR</td>
+            <td>
+                <input type="number" class="form-control" value="${item.quantity}" min="1" onchange="updateQuantity('${item.name}', '${item.tipe}', this.value)">
+            </td>
+            <td>${total.toLocaleString()} IDR</td>
+            <td><button class="btn btn-danger btn-sm" onclick="removeItem('${item.name}', '${item.tipe}')">Hapus</button></td>
+        `;
+        cartTableBody.appendChild(row);
+    });
+
+    // Menampilkan total harga
+    document.getElementById('totalPrice').innerText = `Total: ${totalPrice.toLocaleString()} IDR`;
+
+    // Fungsi untuk mendapatkan URL gambar berdasarkan nama produk
+    function getImageUrl(productName) {
+        const images = {
+            'Case iPhone': 'https://i.pinimg.com/1200x/70/0c/da/700cda4074a57bc8e47cec29b4cde872.jpg',
+            'Tempered Glass': 'https://i.pinimg.com/1200x/eb/90/91/eb90913f1bed90821126449a4a0b1dbc.jpg',
+            'Strap HP': 'https://i.pinimg.com/1200x/27/05/f9/2705f935332fff6d4d75352198fd2d3c.jpg',
+            'Casing Charger': 'https://i.pinimg.com/1200x/21/b4/4e/21b44ee4b17cb1f2a05bc045a90665be.jpg',
+            'Charger iPhone': 'https://i.pinimg.com/1200x/e6/14/b9/e614b9af3fe06d8beddce8ec90e8189d.jpg',
+            'Holder': 'https://i.pinimg.com/1200x/62/27/fd/6227fd0d2a38873cdee7112e7b053780.jpg',
+            'Pop Socket': 'https://i.pinimg.com/1200x/8e/7c/29/8e7c296c024ba13a6407b186fca6ec8c.jpg',
+            'Powerbank': 'https://i.pinimg.com/1200x/1d/b7/6a/1db76aa3d6146c105f48b2c1414a963d.jpg',
+            'EarPods': 'https://i.pinimg.com/1200x/32/f0/a8/32f0a84c88790e943df535d47c0a1161.jpg'
+        };
+        return images[productName] || 'https://via.placeholder.com/100'; // Placeholder jika produk tidak ditemukan
+    }
+
+    // Fungsi untuk memperbarui jumlah produk
+    function updateQuantity(productName, tipe, newQuantity) {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const item = cartItems.find(item => item.name === productName && item.tipe === tipe);
+        if (item) {
+            item.quantity = parseInt(newQuantity);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            location.reload(); // Reload halaman untuk memperbarui tampilan
+        }
+    }
+
+    // Fungsi untuk menghapus item dari keranjang
+    function removeItem(productName, tipe) {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const updatedItems = cartItems.filter(item => !(item.name === productName && item.tipe === tipe));
+        localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+        location.reload(); // Reload halaman untuk memperbarui tampilan
+    }
+
+    // Menambahkan event listener untuk tombol checkout
+    document.getElementById('checkoutButton').addEventListener('click', function() {
+        // Jika ada item di keranjang, arahkan ke halaman pemesanan
+        if (cartItems.length > 0) {
+            window.location.href = 'pemesanan.html';
+        } else {
+            alert('Keranjang Anda kosong. Silakan tambahkan produk sebelum melanjutkan.');
+        }
+    });
+</script>
+</body>
+</html>

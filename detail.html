@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk - Els iPhone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .product-image {
+            width: 100%;
+            height: auto;
+        }
+        .btn-pink {
+            background-color: #222f5e;
+            color: white;
+        }
+        .btn-pink:hover {
+            background-color: #222f5e;
+            color: white;
+        }
+        footer {
+            background-color: white;
+            color: #222f5e;
+        }
+        footer p {
+            margin: 0;
+        }
+        .whatsapp-logo {
+            width: 30px; /* Ubah ukuran sesuai kebutuhan */
+            height: 30px; /* Ubah ukuran sesuai kebutuhan */
+            vertical-align: middle;
+        }
+        .whatsapp-logo {
+            width: 30px; /* Ubah ukuran sesuai kebutuhan */
+            height: 30px; /* Ubah ukuran sesuai kebutuhan */
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="border-bottom py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="logo">
+            <h1 class="h4">Els iPhone</h1>
+        </div>
+        <nav>
+            <a href="index.html" class="mx-2">Beranda</a>
+            <a href="products.html" class="mx-2">Produk</a>
+            <a href="checkout.html" class="mx-2">Keranjang</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Detail Produk -->
+<section class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img id="productImage" class="product-image" alt="Detail Produk">
+        </div>
+        <div class="col-md-6">
+            <h2 id="productName">Nama Produk</h2>
+            <p id="productPrice" class="h4">Rp0</p>
+            <p id="productDescription">Deskripsi produk akan ditampilkan di sini.</p>
+
+            <!-- Dropdown untuk memilih tipe -->
+            <label for="tipeSelect" class="form-label">Pilih Tipe:</label>
+            <select id="tipeSelect" class="form-select mb-3">
+                <option value="" selected>Pilih Tipe</option>
+            </select>
+
+            <button id="addToCartButton" class="btn btn-pink">Tambah ke Keranjang</button>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-top py-3">
+    <div class="container text-center">
+        <a href="https://wa.me/6288980111938" target="_blank" class="whatsapp-link">
+            <img src="wa.jpg" alt="WhatsApp Logo" class="whatsapp-logo">
+        </a>
+        <p>© 2024 Els iPhone | Kontak: elsiphone@example.com | 0889- 8011- 1938</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Mendapatkan parameter URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('product');
+    const productPrice = urlParams.get('price');
+    
+    // Mengupdate halaman dengan data produk
+    document.getElementById('productName').innerText = productName;
+    document.getElementById('productPrice').innerText = 'Rp' + parseInt(productPrice).toLocaleString();
+    document.getElementById('productImage').src = getImageUrl(productName);
+    document.getElementById('productDescription').innerText = getDescription(productName);
+    
+    // Menampilkan opsi tipe berdasarkan produk yang dipilih
+    populateTipe(productName);
+
+    function getImageUrl(productName) {
+        const images = {
+            'Case iPhone': 'https://i.pinimg.com/1200x/70/0c/da/700cda4074a57bc8e47cec29b4cde872.jpg',
+            'Tempered Glass': 'https://i.pinimg.com/1200x/eb/90/91/eb90913f1bed90821126449a4a0b1dbc.jpg',
+            'Strap HP': 'https://i.pinimg.com/1200x/27/05/f9/2705f935332fff6d4d75352198fd2d3c.jpg',
+            'Casing Charger': 'https://i.pinimg.com/1200x/21/b4/4e/21b44ee4b17cb1f2a05bc045a90665be.jpg',
+            'Charger iPhone': 'https://i.pinimg.com/1200x/e6/14/b9/e614b9af3fe06d8beddce8ec90e8189d.jpg',
+            'Holder': 'https://i.pinimg.com/1200x/62/27/fd/6227fd0d2a38873cdee7112e7b053780.jpg',
+            'Pop Socket': 'https://i.pinimg.com/1200x/8e/7c/29/8e7c296c024ba13a6407b186fca6ec8c.jpg',
+            'Powerbank': 'https://i.pinimg.com/1200x/1d/b7/6a/1db76aa3d6146c105f48b2c1414a963d.jpg',
+            'EarPods': 'https://i.pinimg.com/1200x/32/f0/a8/32f0a84c88790e943df535d47c0a1161.jpg'
+        };
+        return images[productName] || '';
+    }
+
+    function getDescription(productName) {
+        const descriptions = {
+            'Case iPhone': 'Pelindung iPhone yang stylish dan fungsional.',
+            'Tempered Glass': 'Pelindung layar yang kuat dan transparan.',
+            'Strap HP': 'Aksesoris untuk menggantungkan ponsel dengan gaya.',
+            'Casing Charger': 'Casing iPhone dengan fitur pengisian daya.',
+            'Charger iPhone': 'Pengisi daya cepat untuk iPhone.',
+            'Holder': 'Pemegang ponsel yang praktis untuk penggunaan sehari-hari.',
+            'Pop Socket': 'Aksesoris untuk memberikan pegangan tambahan pada ponsel.',
+            'Powerbank': 'Baterai cadangan untuk pengisian daya on-the-go.',
+            'EarPods': 'Headphone berkualitas tinggi untuk pengalaman audio terbaik.'
+        };
+        return descriptions[productName] || 'Deskripsi tidak tersedia.';
+    }
+
+    // Fungsi untuk menampilkan tipe berdasarkan produk
+    function populateTipe(productName) {
+        const tipe = {
+            'Case iPhone': ['iP11', 'iP11 Pro', 'iP12', 'iP12 Mini', 'iP12 Pro', 'iP13', 'iP13 Mini', 'iP13 Pro', 'iP14', 'iP14 Pro', 'iP15', 'iP15 Pro'],
+            'Tempered Glass': ['9H', '9D', 'Anti Glare'],
+            'Strap HP': ['Polos', 'Mix', 'Manik Random'],
+            'Casing Charger': ['Hitam', 'Putih', 'Gold'],
+            'Charger iPhone': ['USB-C', 'Lightning'],
+            'Holder': ['Kecil', 'Besar'],
+            'Pop Socket': ['Desain Bunga', 'Polos', 'Desain Kartun', 'Custom'],
+            'Powerbank': ['10000mAh', '20000mAh'],
+            'EarPods': ['Putih', 'Hitam','Biru', 'Merah', 'Kuning', 'Hijau', 'Pink']
+        };
+
+        const tipeSelect = document.getElementById('tipeSelect');
+        tipeSelect.innerHTML = '<option value="" selected>Pilih Tipe</option>'; // Reset opsi
+        
+        const productTipes = tipe[productName] || [];
+        productTipes.forEach(tipe => {
+            const option = document.createElement('option');
+            option.value = tipe;
+            option.innerText = tipe;
+            tipeSelect.appendChild(option);
+        });
+    }
+
+    document.getElementById('addToCartButton').onclick = function() {
+        const tipe = document.getElementById('tipeSelect').value;
+        if (!tipe) {
+            alert('Silakan pilih tipe sebelum menambahkan ke keranjang!');
+            return;
+        }
+        addToCart(productName, parseInt(productPrice), tipe);
+    }
+
+    function addToCart(productName, productPrice, tipe) {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const existingItem = cartItems.find(item => item.name === productName && item.tipe === tipe);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cartItems.push({ name: productName, price: productPrice, tipe: tipe, quantity: 1 });
+        }
+
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        alert(`Produk dengan tipe ${tipe} telah ditambahkan ke keranjang!`);
+    }
+</script>
+</body>
+</html>

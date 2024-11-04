@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Produk - Els iPhone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Background gradien untuk halaman */
+        body {
+            background: linear-gradient(135deg, #e3f2fd, #0d3b61); /* Gradien biru lembut */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Styling gambar produk */
+        .product-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin: 0 auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Efek zoom-in saat hover */
+        .product-card img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Menyelaraskan teks nama produk ke tengah */
+        .product-card .card-title, .product-card .card-text {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Styling untuk header */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling untuk footer */
+        footer {
+            background-color: #ffffff;
+            padding: 15px 0;
+            color: #666;
+        }
+        .whatsapp-logo {
+            width: 30px; /* Ubah ukuran sesuai kebutuhan */
+            height: 30px; /* Ubah ukuran sesuai kebutuhan */
+            vertical-align: middle;
+        }
+        
+    </style>
+</head>
+<body>
+
+<header class="bg-light p-3">
+    <div class="container d-flex justify-content-between">
+        <div class="logo">
+            <h1 class="h4">Els iPhone</h1>
+        </div>
+        <nav>
+            <a href="index.html" class="mx-2">Beranda</a>
+            <a href="products.html" class="mx-2">Produk</a>
+            <a href="checkout.html" class="mx-2">Keranjang</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container my-4">
+    <h2 class="text-center">Katalog Produk</h2>
+    <div class="row">
+        <!-- Produk 1 -->
+        <div class="col-md-4">
+            <div class="card product-card">
+                <img src="https://i.pinimg.com/1200x/70/0c/da/700cda4074a57bc8e47cec29b4cde872.jpg" class="card-img-top" alt="Case iPhone">
+                <div class="card-body">
+                    <h5 class="card-title">Case iPhone</h5>
+                    <p class="card-text">Harga: 100.000 IDR</p>
+                    <a href="detail.html?product=Case iPhone&price=100000" class="btn btn-primary d-block">Detail Produk</a>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 2 -->
+        <div class="col-md-4">
+            <div class="card product-card">
+                <img src="https://i.pinimg.com/1200x/eb/90/91/eb90913f1bed90821126449a4a0b1dbc.jpg" class="card-img-top" alt="Tempered Glass">
+                <div class="card-body">
+                    <h5 class="card-title">Tempered Glass</h5>
+                    <p class="card-text">Harga: 75.000 IDR</p>
+                    <a href="detail.html?product=Tempered Glass&price=75000" class="btn btn-primary d-block">Detail Produk</a>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 3 -->
+        <div class="col-md-4">
+            <div class="card product-card">
+                <img src="https://i.pinimg.com/1200x/27/05/f9/2705f935332fff6d4d75352198fd2d3c.jpg" class="card-img-top" alt="Strap HP">
+                <div class="card-body">
+                    <h5 class="card-title">Strap HP</h5>
+                    <p class="card-text">Harga: 40.000 IDR</p>
+                    <a href="detail.html?product=Strap HP&price=40000" class="btn btn-primary d-block">Detail Produk</a>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 4 -->
+        <div class="col-md-4">
+            <div class="card product-card">
+                <img src="https://i.pinimg.com/1200x/21/b4/4e/21b44ee4b17cb1f2a05bc045a90665be.jpg" class="card-img-top" alt="Casing Charger">
+                <div class="card-body">
+                    <h5 class="card-title">Casing Charger</h5>
+                    <p class="card-text">Harga: 50.000 IDR</p>
+                    <a href="detail.html?product=Casing Charger&price=50000" class="btn btn-primary d-block">Detail Produk</a>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 5 -->
+        <div class="col-md-4">
+            <div class="card product-card">
+                <img src="https://i.pinimg.com/1200x/e6/14/b9/e614b9af3fe06d8beddce8ec90e8189d.jpg" class="card-img-top" alt="Charger iPhone">
+                <div class="card-body">
+                    <h5 class="card-title">Charger iPhone</h5>
+                    <p class="card-text">Harga: 140.000 IDR</p>
+                    <a href="detail.html?product=Charger iPhone&price=140000" class="btn btn-primary d-block">Detail Produk</a>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 6 -->
+        <div class="col-md-4">
+            <div class="card product-card">
+                <img src="https://i.pinimg.com/1200x/62/27/fd/6227fd0d2a38873cdee7112e7b053780.jpg" class="card-img-top" alt="Holder">
+                <div class="card-body">
+                    <h5 class="card-title">Holder</h5>
+                    <p class="card-text">Harga: 100.000 IDR</p>
+                    <a href="detail.html?product=Holder&price=100000" class="btn btn-primary d-block">Detail Produk</a>
+                </div>
+            </div>
+        </div>
+        <!-- Produk 7 -->
+        <div class="col-md-4">
+                <div class="card product-card">
+                    <img src="https://i.pinimg.com/1200x/8e/7c/29/8e7c296c024ba13a6407b186fca6ec8c.jpg" class="card-img-top" alt="Pop Socket">
+                    <div class="card-body">
+                        <h5 class="card-title">Pop Socket</h5>
+                        <p class="card-text">Harga: 50.000 IDR</p>
+                        <a href="detail.html?product=Pop Socket&price=50000" class="btn btn-primary d-block">Detail Produk</a>
+                    </div>
+                </div>
+        </div>
+         <!-- Produk 8 -->
+        <div class="col-md-4">
+                <div class="card product-card">
+                    <img src="https://i.pinimg.com/1200x/1d/b7/6a/1db76aa3d6146c105f48b2c1414a963d.jpg" class="card-img-top" alt="Powerbank">
+                    <div class="card-body">
+                            <h5 class="card-title">Powerbank</h5>
+                            <p class="card-text">Harga: 170.000 IDR</p>
+                            <a href="detail.html?product=Powerbank&price=170000" class="btn btn-primary d-block">Detail Produk</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produk 9 -->
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="https://i.pinimg.com/1200x/32/f0/a8/32f0a84c88790e943df535d47c0a1161.jpg" class="card-img-top" alt="EarPods">
+                        <div class="card-body">
+                            <h5 class="card-title">EarPods</h5>
+                            <p class="card-text">Harga: 180.000 IDR</p>
+                            <a href="detail.html?product=EarPods&price=180000" class="btn btn-primary d-block">Detail Produk</a>
+                        </div>
+                    </div>
+                </div>
+        
+    </div>
+</main>
+
+<footer class="footer text-center">
+    <a href="https://wa.me/6288980111938" target="_blank" class="whatsapp-link">
+        <img src="wa.jpg" alt="WhatsApp Logo" class="whatsapp-logo">
+    </a>
+    <p>© 2024 Els iPhone | Kontak: elsiphone@example.com | 0889- 8011- 1938</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
